@@ -5,11 +5,14 @@ import com.begoassingment.librarymanagement.model.LibraryItem;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class LibraryItemRepositoryImpl implements LibraryItemRepository {
-    private final List<LibraryItem> libraryItems = new ArrayList<>();
+    private final List<LibraryItem> libraryItems = Collections.synchronizedList(new ArrayList<>());
+
 
     @Override
     public void save(LibraryItem item) {
@@ -23,13 +26,11 @@ public class LibraryItemRepositoryImpl implements LibraryItemRepository {
 
     @Override
     public List<LibraryItem> getItemsByType(ItemType type) {
-        List<LibraryItem> itemsOfType = new ArrayList<>();
-        for (LibraryItem item : libraryItems) {
-            if (item.getType() == type) {
-                itemsOfType.add(item);
-            }
+        synchronized (libraryItems) {
+            return libraryItems.stream()
+                    .filter(item -> item.getType() == type)
+                    .collect(Collectors.toList());
         }
-        return itemsOfType;
     }
 
     @Override

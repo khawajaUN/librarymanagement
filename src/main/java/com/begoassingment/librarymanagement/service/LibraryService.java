@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class LibraryService {
@@ -107,7 +108,7 @@ public class LibraryService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         List<LibraryItem> items = libraryItemRepository.getAllItems();
-        List<DueItem> dueItems = new ArrayList<>();
+        List<DueItem> dueItems = new CopyOnWriteArrayList<>();
 
 
         for (LibraryItem item : items) {
