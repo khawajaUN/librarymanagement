@@ -1,6 +1,7 @@
 package com.begoassingment.librarymanagement.controller;
 import com.begoassingment.librarymanagement.model.DueItem;
 import com.begoassingment.librarymanagement.model.ItemType;
+import com.begoassingment.librarymanagement.model.LibraryItem;
 import com.begoassingment.librarymanagement.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,35 +23,35 @@ public class LibraryController {
         libraryService.addItem(uniqueID, itemID, type, title);
     }
 
-//    @PostMapping("/borrowItem")
-//    public void borrowItem(@RequestParam Long uniqueID) {
-//        libraryService.borrowItem(uniqueID);
-//    }
+    @PostMapping("/borrowItem")
+    public void borrowItem(@RequestParam Long uniqueID) {
+        libraryService.borrowItem(uniqueID);
+    }
 
-//    @PostMapping("/returnItem")
-//    public void returnItem(@RequestParam Long uniqueID) {
-//        libraryService.returnItem(uniqueID);
-//    }
+    @PostMapping("/returnItem")
+    public void returnItem(@RequestParam Long uniqueID) {
+        libraryService.returnItem(uniqueID);
+    }
 
-//    @GetMapping("/getAllItems")
-//    public List<LibraryItem> getAllItems() {
-//        return libraryService.getAllItems();
-//    }
+    @GetMapping("/listAllItems")
+    public void listAllItems() {
+        libraryService.listAllItems();
+    }
 
-//    @GetMapping("/getItemsByType")
-//    public List<LibraryItem> getItemsByType(@RequestParam ItemType type) {
-////        return libraryService.getItemsByType(type);
-//    }
+    @GetMapping("/listItemsByType")
+    public void listItemsByType(@RequestParam ItemType type) {
+        libraryService.listItemsByType(type);
+    }
 
-//    @GetMapping("/getItemsDueForReturn")
-//    public List<DueItem> getItemsDueForReturn() {
-//        return libraryService.listItemsDueForReturn();
-//    }
+    @GetMapping("/listItemsDueForReturn")
+    public List<DueItem> listItemsDueForReturn() {
+        return libraryService.listItemsDueForReturn();
+    }
 
-//    @GetMapping("/getAvailableItems")
-//    public List<LibraryItem> getAvailableItems() {
-//        return libraryService.getAvailableItems();
-//    }
+    @GetMapping("/listAvailableItems")
+    public void listAvailableItems() {
+        libraryService.listAvailableItems();
+    }
 }
 
 
